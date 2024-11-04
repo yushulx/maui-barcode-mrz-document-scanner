@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Dynamsoft.CameraEnhancer.Maui;assembly=Dynamsoft.CameraEnhancer.Maui"
+             x:Class="AutoNormalize.CameraPage"
+             Title="Auto Normalize">
+    <AbsoluteLayout>
+        <controls:CameraView x:Name="camera"
+                             AbsoluteLayout.LayoutBounds="0,0,1,1"
+                             AbsoluteLayout.LayoutFlags="All"/>
+        <!-- Capture Button -->
+        <Button x:Name="captureButton"
+                BackgroundColor="White"
+                WidthRequest="70"
+                HeightRequest="70"
+                CornerRadius="35"
+                Clicked="OnCaptureButtonClicked"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                AbsoluteLayout.LayoutBounds="0.5, 0.9, 90, 90"
+                AbsoluteLayout.LayoutFlags="PositionProportional"/>
+
+    </AbsoluteLayout>
+</ContentPage>

@@ -14,3 +14,5 @@ This repository contains .NET MAUI examples for using the Dynamsoft Capture Visi
 - [Barcode Reader and Scanner](./examples/BarcodeQrScanner/)
     
     https://github.com/yushulx/maui-barcode-qrcode-scanner/assets/2202306/b76aae4d-cc59-4370-a2ba-df8d46532713
+
+- [Document Scanner](./examples/DocumentScanner/)
