@@ -9,7 +9,11 @@ The .NET MAUI document scanner is developed with the [Dynamsoft Capture Vision S
     ```csharp
     LicenseManager.InitLicense("LICENSE-KEY", this);
     ```
-3. Build and run the project. 
+3. Build and run the project.
+
+    https://github.com/user-attachments/assets/1411d263-1446-41aa-93e2-1ed8cf3e802c
+
+
 
 
 
