@@ -14,11 +14,6 @@ public partial class ImagePage : ContentPage
         InitializeComponent();
         this.data = data;
         this.cvr = new CaptureVisionRouter();
-    }
-
-    protected override void OnHandlerChanged()
-    {
-        base.OnHandlerChanged();
         normalize(EnumImageColourMode.ICM_Colour);
     }
 

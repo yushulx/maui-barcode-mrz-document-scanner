@@ -4,37 +4,36 @@
              x:Class="AutoNormalize.ImagePage"
              Title="ImagePage">
 
-    <!-- Toolbar Item for Share Button -->
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Share"
-                     IconImageSource="share_icon.png"
-                     Order="Primary"
-                     Priority="0"
-                     Clicked="OnShareButtonClicked"/>
-    </ContentPage.ToolbarItems>
+        <!-- Toolbar Item for Share Button -->
+        <ContentPage.ToolbarItems>
+                <ToolbarItem Text="Share"
+                             Order="Primary"
+                             Priority="0"
+                             Clicked="OnShareButtonClicked"/>
+        </ContentPage.ToolbarItems>
 
-    <Grid RowDefinitions="Auto, *, Auto"
-          ColumnDefinitions="*,*,*">
-        <Button Text="gray"
-                Grid.Row="0"
-                Grid.Column="0"
-                Margin="10,20"
-                Clicked="OnButtonClicked"/>
-        <Button Text="color"
-                Grid.Row="0"
-                Grid.Column="1"
-                Margin="10,20"
-                Clicked="OnButtonClicked"/>
-        <Button Text="binary"
-                Grid.Row="0"
-                Grid.Column="2"
-                Margin="10,20"
-                Clicked="OnButtonClicked"/>
+        <Grid RowDefinitions="Auto, *, Auto"
+              ColumnDefinitions="*,*,*">
+                <Button Text="gray"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="10,20"
+                        Clicked="OnButtonClicked"/>
+                <Button Text="color"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="10,20"
+                        Clicked="OnButtonClicked"/>
+                <Button Text="binary"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Margin="10,20"
+                        Clicked="OnButtonClicked"/>
 
-        <Image x:Name="image"
-               Grid.Row="1"
-               Grid.ColumnSpan="3"
-               Margin="20,0,20,20"/>
+                <Image x:Name="image"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="3"
+                       Margin="20,0,20,20"/>
 
-    </Grid>
+        </Grid>
 </ContentPage>
