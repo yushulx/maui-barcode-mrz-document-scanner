@@ -11,5 +11,7 @@ The .NET MAUI MRZ scanner is developed with the [Dynamsoft Capture Vision SDK fo
     ```
 3. Build and run the project.
 
+    https://github.com/user-attachments/assets/4b8edc11-3627-46c6-a73e-be3f4d43842e
+
 
 
