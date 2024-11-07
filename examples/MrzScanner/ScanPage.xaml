@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    Shell.NavBarIsVisible="False"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Dynamsoft.CameraEnhancer.Maui;assembly=Dynamsoft.CameraEnhancer.Maui"
+    Title=""
+    x:Class="mrz_scanner_mobile_maui.ScanPage">
+    <AbsoluteLayout>
+        <controls:CameraView x:Name="camera"
+                             AbsoluteLayout.LayoutBounds="0,0,1,1"
+                             AbsoluteLayout.LayoutFlags="All">
+        </controls:CameraView>
+        <ImageButton
+            x:Name="BtnBeep"
+            Margin="30"
+            WidthRequest="56"
+            HeightRequest="56"
+            Source="icon_music.png"
+            Clicked="BeepClicked"
+            />
+        <VerticalStackLayout x:Name="LayoutWarn"
+            AbsoluteLayout.LayoutBounds="0, 0.15"
+            AbsoluteLayout.LayoutFlags="PositionProportional">
+            <HorizontalStackLayout x:Name="LayoutStart" BackgroundColor="#000000" Opacity="0.7" Margin="30, 30, 0 ,0" IsVisible="False">
+                <Image Source="icon_attention.png" Margin="4"/>
+                <Label
+                    x:Name="LabelStart"
+                       TextColor="White"
+                       WidthRequest="280"
+                       LineBreakMode="WordWrap"
+                       />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <HorizontalStackLayout  x:Name="LayoutInit" BackgroundColor="#000000" Opacity="0.7" Margin="30, 10, 0 ,0" IsVisible="False">
+                    <Image Source="icon_attention.png" Margin="4"/>
+                    <Label x:Name="LabelInit"
+                       WidthRequest="280"
+                       LineBreakMode="WordWrap"
+                       TextColor="White"/>
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+        <Label
+            x:Name="LabelAlert"
+            Padding="30,30,0,14"
+            AbsoluteLayout.LayoutBounds="0, 0.62"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            TextColor="Red"/>
+        <Label
+            x:Name="LabelError"
+            Padding="30,30,0,14"
+            AbsoluteLayout.LayoutBounds="0, 0.65"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            TextColor="White"/>
+        <Frame
+                HeightRequest="54"
+                Padding="4"
+                Margin="30"
+                AbsoluteLayout.LayoutBounds="0.5, 0.8, 1, 1"
+                AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                HorizontalOptions="FillAndExpand"
+                Background="#000000"
+                BorderColor="#000000"
+                Opacity="0.8"
+                >
+            <Grid
+                    HorizontalOptions="FillAndExpand"
+                    ColumnSpacing="4"
+                    HeightRequest="54"
+                    >
+                <Grid.RowDefinitions>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button
+                        x:Name="IdBtn"
+                        Text="ID"
+                        Grid.Column="0"
+                        FontSize="15"
+                        HeightRequest="44"
+                        HorizontalOptions="FillAndExpand"
+                        Background="#000000"
+                        Clicked="IdBtnClicked"  
+                    />
+                <BoxView
+                        WidthRequest="1"
+                        HeightRequest="20"
+                        Color="#707070"
+                        Grid.Column="1"
+                        />
+                <Button
+                        x:Name="PassportBtn"
+                        Grid.Column="2"
+                        Text="Passport"
+                        FontSize="15"
+                        HeightRequest="44"
+                        HorizontalOptions="FillAndExpand"
+                        Background="#000000"
+                       Clicked="PassportBtnClicked"
+                     />
+                <BoxView
+                        WidthRequest="1"
+                        HeightRequest="20"
+                        Color="#707070"
+                        Grid.Column="3"
+                        />
+                <Button
+                        x:Name="BothBtn"
+                        Text="Both"
+                        Grid.Column="4"
+                        HorizontalOptions="FillAndExpand"
+                        FontSize="15"
+                        HeightRequest="44"
+                        Background="#FE8E14"
+                        Clicked="BothBtnClicked"
+                     />
+            </Grid>
+        </Frame>
+        <Label
+            AbsoluteLayout.LayoutBounds="0.5, 1, 1, 70"
+            AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+            WidthRequest="180"
+            Text="Powered by Dynamsoft"
+            FontSize="16"
+            TextColor="#999999"/>
+    </AbsoluteLayout>
+</ContentPage>

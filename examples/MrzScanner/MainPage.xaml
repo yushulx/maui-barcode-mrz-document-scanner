@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title=""
+             BackgroundColor="#323234"
+             x:Class="mrz_scanner_mobile_maui.MainPage">
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            VerticalOptions="Start"
+            Padding="30,130">
+
+            <Image
+                Source="dynamsoft_logo.png"
+                HeightRequest="37"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="MRZ Scanner"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="28"
+                TextColor="White"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Dynamsoft MRZ Scanner recognizes the Machine-Readable Zone (MRZ) on a passport or an Id Card and converts the encoded strings into human-readable fields."
+                SemanticProperties.HeadingLevel="Level2"
+                FontSize="16"
+                TextColor="White"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="NavigationBtn"
+                Text="Scan an MRZ"
+                FontSize="16"
+                WidthRequest="180"
+                BackgroundColor="#FE8E14"
+                Clicked="OnNavigationBtnClicked"
+                HorizontalOptions="Center" />
+
+            <StackLayout
+                HeightRequest="180"
+                Orientation="Horizontal">
+                <Label
+                Text="Powered by Dynamsoft"
+                FontSize="16"
+                TextColor="#999999"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="End"/>
+
+            </StackLayout>
+
+        </VerticalStackLayout>
+
+
+    </ScrollView>
+
+</ContentPage>
+
