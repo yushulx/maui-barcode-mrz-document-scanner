@@ -1,10 +1,8 @@
-﻿using Dynamsoft.License.Maui;
-
-namespace mrz_scanner_mobile_maui;
+﻿namespace mrz_scanner_mobile_maui;
 
 public partial class MainPage : ContentPage
 {
-    
+
     public MainPage()
     {
         InitializeComponent();

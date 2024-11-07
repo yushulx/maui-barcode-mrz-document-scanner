@@ -36,7 +36,7 @@ public partial class ScanPage : ContentPage, ILicenseVerificationListener, ICapt
         {
             enhancer.SetCameraView(camera);
             enhancer.EnableEnhancedFeatures(EnumEnhancedFeatures.EF_FRAME_FILTER);
-            enhancer.Open();
+            // enhancer.Open();
         }
     }
 
