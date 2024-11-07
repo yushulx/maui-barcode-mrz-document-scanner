@@ -20,3 +20,5 @@ This repository contains .NET MAUI examples for using the Dynamsoft Capture Visi
     https://github.com/user-attachments/assets/1411d263-1446-41aa-93e2-1ed8cf3e802c
 
 - [MRZ Scanner](./examples/MrzScanner/)
+
+   https://github.com/user-attachments/assets/4b8edc11-3627-46c6-a73e-be3f4d43842e
