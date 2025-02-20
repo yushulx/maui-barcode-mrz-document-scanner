@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarcodeQrScanner.CameraPage"
+             xmlns:controls="clr-namespace:BarcodeQrScanner.Controls"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             Title="CameraPage">
+
+    <Grid>
+        <controls:CameraView 
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        x:Name="CameraView"
+        ResultReady="OnResultReady"/>
+
+        <skia:SKCanvasView 
+        Margin="0"
+        HorizontalOptions="Fill" VerticalOptions="Fill"
+        PaintSurface="OnOverlayPaint"
+        x:Name="Overlay"/>
+
+        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="End" Spacing="10">
+            <HorizontalStackLayout>
+                <Button x:Name="startButton"
+            Text="StartStream"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Clicked="OnStartButtonClicked"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Button x:Name="stopButton"
+            Text="StopStream"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Clicked="OnStopButtonClicked"/>
+            </HorizontalStackLayout>
+
+        </HorizontalStackLayout>
+
+    </Grid>
+
+</ContentPage>
