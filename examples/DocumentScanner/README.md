@@ -13,7 +13,7 @@ The .NET MAUI document scanner is developed with the [Dynamsoft Capture Vision S
 
     https://github.com/user-attachments/assets/1411d263-1446-41aa-93e2-1ed8cf3e802c
 
-
-
+## Blog
+[Creating a .NET MAUI Document Scanner: Capture, Normalize, and Share Documents Effortlessly](https://www.dynamsoft.com/codepool/dotnet-maui-document-scanner-capture.html)
 
 
