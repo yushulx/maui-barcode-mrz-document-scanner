@@ -8,7 +8,6 @@ using Dynamsoft.BarcodeReader.Maui;
 using Dynamsoft.CameraEnhancer.Maui;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.Maui.LifecycleEvents;
 
 public partial class MobileCameraPage : ContentPage, ICapturedResultReceiver, ICompletionListener
 {
@@ -17,9 +16,21 @@ public partial class MobileCameraPage : ContentPage, ICapturedResultReceiver, IC
     private float previewWidth = 0;
     private float previewHeight = 0;
 
+    private CameraView CameraPreview;
+
     public MobileCameraPage()
     {
         InitializeComponent();
+
+        if (DeviceInfo.Platform == DevicePlatform.Android ||
+                DeviceInfo.Platform == DevicePlatform.iOS)
+        {
+            // Dynamsoft.CameraEnhancer.Maui is available only on Android/iOS
+            CameraPreview = new Dynamsoft.CameraEnhancer.Maui.CameraView();
+            CameraPreview.SizeChanged += OnImageSizeChanged;
+            // Insert the camera view as the first child of the grid
+            MainGrid.Children.Insert(0, CameraPreview);
+        }
 
         enhancer = new CameraEnhancer();
         router = new CaptureVisionRouter();
