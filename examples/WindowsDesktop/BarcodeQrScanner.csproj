@@ -59,7 +59,12 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android' Or '$(TargetFramework)' == 'net9.0-ios'">
+		<PackageReference Include="Dynamsoft.CaptureVisionBundle.Maui" Version="2.6.1000" />
+	</ItemGroup>
+
 	<ItemGroup>
+		
 		<PackageReference Include="Dynamsoft.DotNet.BarcodeReader.Bundle" Version="10.4.2000" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />

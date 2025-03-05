@@ -19,11 +19,11 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			}).ConfigureMauiHandlers(handlers =>
-            {
+			{
 #if WINDOWS
-handlers.AddHandler(typeof(CameraView), typeof(CameraPreviewHandler));
+handlers.AddHandler(typeof(CameraView), typeof(CameraViewHandler));
 #endif
-            }); ;
+			}); 
 
 #if DEBUG
 		builder.Logging.AddDebug();

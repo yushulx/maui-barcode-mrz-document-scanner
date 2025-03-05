@@ -12,7 +12,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace BarcodeQrScanner.Platforms.Windows
 {
-    public class CameraPreviewHandler : ViewHandler<CameraView, MediaPlayerElement>
+    public class CameraViewHandler : ViewHandler<CameraView, MediaPlayerElement>
     {
         private MediaCapture _mediaCapture;
         private MediaFrameReader? _frameReader;
@@ -20,26 +20,26 @@ namespace BarcodeQrScanner.Platforms.Windows
         private MediaPlayerElement platformView;
         private CaptureVisionRouter cvr = new CaptureVisionRouter();
 
-        public static IPropertyMapper<CameraView, CameraPreviewHandler> PropertyMapper = new PropertyMapper<CameraView, CameraPreviewHandler>(ViewMapper)
+        public static IPropertyMapper<CameraView, CameraViewHandler> PropertyMapper = new PropertyMapper<CameraView, CameraViewHandler>(ViewMapper)
         {
         };
-        public static CommandMapper<CameraView, CameraPreviewHandler> CommandMapper = new(ViewCommandMapper)
+        public static CommandMapper<CameraView, CameraViewHandler> CommandMapper = new(ViewCommandMapper)
         {
             [nameof(ICameraHandler.StartPreview)] = MapStartPreview,
             [nameof(ICameraHandler.StopPreview)] = MapStopPreview
         };
 
-        private static void MapStartPreview(CameraPreviewHandler handler, CameraView view, object? arg)
+        private static void MapStartPreview(CameraViewHandler handler, CameraView view, object? arg)
         {
             handler.StartPreview();
         }
 
-        private static void MapStopPreview(CameraPreviewHandler handler, CameraView cameraView, object? arg)
+        private static void MapStopPreview(CameraViewHandler handler, CameraView cameraView, object? arg)
         {
             handler.StopPreview();
         }
 
-        public CameraPreviewHandler() : base(PropertyMapper, CommandMapper)
+        public CameraViewHandler() : base(PropertyMapper, CommandMapper)
         {
         }
 
