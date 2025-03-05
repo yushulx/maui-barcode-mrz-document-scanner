@@ -40,8 +40,16 @@ public partial class MainPage : ContentPage
 
 	private async void OnCameraButtonClicked(object sender, EventArgs e)
 	{
-        await Navigation.PushAsync(new CameraPage());
-    }
+		if (DeviceInfo.Current.Platform == DevicePlatform.Android || DeviceInfo.Current.Platform == DevicePlatform.iOS)
+		{
+			await Navigation.PushAsync(new MobileCameraPage());
+		}
+		else
+		{
+			await Navigation.PushAsync(new CameraPage());
+		}
+
+	}
 
 	async Task LoadPhotoAsync(FileResult? photo)
 	{
@@ -50,7 +58,16 @@ public partial class MainPage : ContentPage
 			return;
 		}
 
-		await Navigation.PushAsync(new PicturePage(photo.FullPath));
+		if (DeviceInfo.Current.Platform == DevicePlatform.Android || DeviceInfo.Current.Platform == DevicePlatform.iOS)
+		{
+			await Navigation.PushAsync(new MobilePicturePage(photo.FullPath));
+		}
+		else
+		{
+			await Navigation.PushAsync(new PicturePage(photo.FullPath));
+		}
+
+
 	}
 }
 
