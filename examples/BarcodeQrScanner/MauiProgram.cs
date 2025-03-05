@@ -20,7 +20,7 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			})
 			.ConfigureLifecycleEvents(events =>
-                            {
+							{
 #if ANDROID
                                 events.AddAndroid(android => android
                                     .OnResume((activity) =>
@@ -32,11 +32,11 @@ public static class MauiProgram
 										NotifyPage("Stop");
                                     }));
 #endif
-                            })
+							})
 							.ConfigureMauiHandlers(handlers =>
-            {
-                handlers.AddHandler(typeof(CameraView), typeof(CameraViewHandler));
-            });
+			{
+				handlers.AddHandler(typeof(CameraView), typeof(CameraViewHandler));
+			});
 
 #if DEBUG
 		builder.Logging.AddDebug();
