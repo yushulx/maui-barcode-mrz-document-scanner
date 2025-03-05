@@ -5,9 +5,15 @@
              xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
              Title="MobilePicturePage">
 
-    <Grid>
-
-
-    </Grid>
+    <ContentPage.Content>
+        <Grid>
+            <Image x:Name="PickedImage"
+                    Aspect="AspectFit"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    SizeChanged="OnImageSizeChanged"/>
+            <GraphicsView x:Name="OverlayGraphicsView"/>
+        </Grid>
+    </ContentPage.Content>
 
 </ContentPage>

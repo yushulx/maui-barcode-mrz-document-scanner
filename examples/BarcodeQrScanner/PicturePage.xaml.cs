@@ -65,8 +65,4 @@ public partial class PicturePage : ContentPage
         OverlayGraphicsView.HeightRequest = PickedImage.Height;
     }
 
-    async void OnImageLoad(string imagepath)
-    {
-        await Navigation.PopAsync();
-    }
 }
