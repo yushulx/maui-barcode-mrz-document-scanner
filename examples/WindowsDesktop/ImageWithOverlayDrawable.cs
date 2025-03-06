@@ -38,8 +38,7 @@ public class ImageWithOverlayDrawable : IDrawable
             foreach (var item in items)
             {
                 Microsoft.Maui.Graphics.Point[] points = item.Location.Points;
-
-                // Draw the bounding box
+                
                 if (_isFile)
                 {
                     canvas.DrawLine((float)points[0].X * scale, (float)points[0].Y * scale, (float)points[1].X * scale, (float)points[1].Y * scale);

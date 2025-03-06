@@ -36,15 +36,15 @@ public partial class MainPage : ContentPage
 		{
 
 			FileResult? photo = null;
-			// if (DeviceInfo.Current.Platform == DevicePlatform.WinUI || DeviceInfo.Current.Platform == DevicePlatform.MacCatalyst)
-			// {
-			// 	photo = await FilePicker.PickAsync();
-			// }
-			// else if (DeviceInfo.Current.Platform == DevicePlatform.Android || DeviceInfo.Current.Platform == DevicePlatform.iOS)
-			// {
-			// 	photo = await MediaPicker.CapturePhotoAsync();
-			// }
-			photo = await FilePicker.PickAsync();
+			if (DeviceInfo.Current.Platform == DevicePlatform.WinUI || DeviceInfo.Current.Platform == DevicePlatform.MacCatalyst)
+			{
+				photo = await FilePicker.PickAsync();
+			}
+			else if (DeviceInfo.Current.Platform == DevicePlatform.Android || DeviceInfo.Current.Platform == DevicePlatform.iOS)
+			{
+				photo = await MediaPicker.CapturePhotoAsync();
+			}
+			// photo = await FilePicker.PickAsync();
 			await LoadPhotoAsync(photo);
 		}
 		catch (Exception ex)
@@ -73,9 +73,13 @@ public partial class MainPage : ContentPage
 			return;
 		}
 
-		if (DeviceInfo.Current.Platform == DevicePlatform.Android || DeviceInfo.Current.Platform == DevicePlatform.iOS)
+		if (DeviceInfo.Current.Platform == DevicePlatform.Android)
 		{
-			await Navigation.PushAsync(new MobilePicturePage(photo.FullPath));
+			await Navigation.PushAsync(new AndroidPicturePage(photo));
+		}
+		else if (DeviceInfo.Current.Platform == DevicePlatform.iOS)
+		{
+			await Navigation.PushAsync(new iOSPicturePage(photo));
 		}
 		else
 		{
