@@ -1,7 +1,7 @@
 #if ANDROID || IOS
 using Dynamsoft.CaptureVisionRouter.Maui;
 using Dynamsoft.BarcodeReader.Maui;
-
+#endif
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 
@@ -9,11 +9,14 @@ namespace BarcodeQrScanner;
 
 public partial class iOSPicturePage : ContentPage
 {
-    SKBitmap? bitmap;
-    private CaptureVisionRouter router = new CaptureVisionRouter();
-    bool isDataReady = false;
-    CapturedResult? result;
 
+    SKBitmap? bitmap;
+    bool isDataReady = false;
+#if ANDROID || IOS
+    private CaptureVisionRouter router = new CaptureVisionRouter();
+
+    CapturedResult? result;
+#endif
     public iOSPicturePage(FileResult result)
     {
         InitializeComponent();
@@ -29,6 +32,7 @@ public partial class iOSPicturePage : ContentPage
         {
             bitmap = SKBitmap.Decode(stream);
 
+#if ANDROID || IOS
             // Decode barcode
             stream = await fileResult.OpenReadAsync();
             byte[] filestream = new byte[stream.Length];
@@ -48,7 +52,7 @@ public partial class iOSPicturePage : ContentPage
             }
 
             result = router.Capture(filestream, EnumPresetTemplate.PT_READ_BARCODES);
-
+#endif
             isDataReady = true;
             canvasView.InvalidateSurface();
         }
@@ -97,6 +101,7 @@ public partial class iOSPicturePage : ContentPage
             };
 
             SKFont font = new SKFont() { Size = textSize };
+#if ANDROID || IOS
             if (isDataReady)
             {
                 if (result != null)
@@ -122,7 +127,7 @@ public partial class iOSPicturePage : ContentPage
                     ResultLabel.Text = "No 1D/2D barcode found";
                 }
             }
-
+#endif
 
             float scale = Math.Min((float)info.Width / bitmap.Width,
                                (float)info.Height / bitmap.Height);
@@ -137,4 +142,3 @@ public partial class iOSPicturePage : ContentPage
 
     }
 }
-#endif

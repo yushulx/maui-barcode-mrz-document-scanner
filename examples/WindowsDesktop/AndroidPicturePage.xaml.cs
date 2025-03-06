@@ -1,7 +1,7 @@
 #if ANDROID || IOS
 using Dynamsoft.CaptureVisionRouter.Maui;
 using Dynamsoft.BarcodeReader.Maui;
-
+#endif
 using SkiaSharp;
 using System.Diagnostics;
 using Microsoft.Maui.Graphics.Platform;
@@ -10,7 +10,9 @@ namespace BarcodeQrScanner;
 
 public partial class AndroidPicturePage : ContentPage
 {
+#if ANDROID || IOS
     private CaptureVisionRouter router = new CaptureVisionRouter();
+#endif
 
     public AndroidPicturePage(FileResult result)
     {
@@ -50,6 +52,7 @@ public partial class AndroidPicturePage : ContentPage
             PickedImage.Source = imageSource;
 
 
+#if ANDROID || IOS
             // Decode barcode
             var streamcopy = await result.OpenReadAsync();
             byte[] filestream = new byte[streamcopy.Length];
@@ -82,6 +85,7 @@ public partial class AndroidPicturePage : ContentPage
             // Set drawable to GraphicsView
             OverlayGraphicsView.Drawable = drawable;
             OverlayGraphicsView.Invalidate(); // Redraw the view
+#endif
         }
         catch (Exception ex)
         {
@@ -96,4 +100,3 @@ public partial class AndroidPicturePage : ContentPage
         OverlayGraphicsView.HeightRequest = PickedImage.Height;
     }
 }
-#endif
