@@ -38,7 +38,7 @@ public class ImageWithOverlayDrawable : IDrawable
             foreach (var item in items)
             {
                 Microsoft.Maui.Graphics.Point[] points = item.Location.Points;
-                
+
                 if (_isFile)
                 {
                     canvas.DrawLine((float)points[0].X * scale, (float)points[0].Y * scale, (float)points[1].X * scale, (float)points[1].Y * scale);
@@ -47,7 +47,7 @@ public class ImageWithOverlayDrawable : IDrawable
                     canvas.DrawLine((float)points[3].X * scale, (float)points[3].Y * scale, (float)points[0].X * scale, (float)points[0].Y * scale);
                 }
 
-                canvas.DrawString(item.Text, (float)points[0].X * scale, (float)points[0].Y * scale, HorizontalAlignment.Left);
+                canvas.DrawString(item.Text, (float)points[0].X * scale, (float)points[0].Y * scale - 10, HorizontalAlignment.Left);
             }
         }
     }
