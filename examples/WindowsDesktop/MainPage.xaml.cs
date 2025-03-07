@@ -44,7 +44,6 @@ public partial class MainPage : ContentPage
 			{
 				photo = await MediaPicker.CapturePhotoAsync();
 			}
-			// photo = await FilePicker.PickAsync();
 			await LoadPhotoAsync(photo);
 		}
 		catch (Exception ex)
@@ -57,7 +56,11 @@ public partial class MainPage : ContentPage
 	{
 		if (DeviceInfo.Current.Platform == DevicePlatform.Android || DeviceInfo.Current.Platform == DevicePlatform.iOS)
 		{
-			await Navigation.PushAsync(new MobileCameraPage());
+			await Navigation.PushAsync(new AndroidCameraPage());
+		}
+		else if (DeviceInfo.Current.Platform == DevicePlatform.iOS)
+		{
+			await Navigation.PushAsync(new iOSCameraPage());
 		}
 		else
 		{
@@ -85,8 +88,6 @@ public partial class MainPage : ContentPage
 		{
 			await Navigation.PushAsync(new PicturePage(photo.FullPath));
 		}
-
-
 	}
 }
 

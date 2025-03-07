@@ -9,7 +9,7 @@ using Dynamsoft.CameraEnhancer.Maui;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Messaging;
 
-public partial class MobileCameraPage : ContentPage, ICapturedResultReceiver, ICompletionListener
+public partial class AndroidCameraPage : ContentPage, ICapturedResultReceiver, ICompletionListener
 {
     private CameraEnhancer? enhancer = null;
     private CaptureVisionRouter router;
@@ -18,7 +18,7 @@ public partial class MobileCameraPage : ContentPage, ICapturedResultReceiver, IC
 
     private CameraView CameraPreview;
 
-    public MobileCameraPage()
+    public AndroidCameraPage()
     {
         InitializeComponent();
 
@@ -60,6 +60,8 @@ public partial class MobileCameraPage : ContentPage, ICapturedResultReceiver, IC
         {
             enhancer.SetCameraView(CameraPreview);
             enhancer.Open();
+            previewWidth = (float)enhancer.GetCameraView().Width;
+            previewHeight = (float)enhancer.GetCameraView().Height;
         }
     }
 
