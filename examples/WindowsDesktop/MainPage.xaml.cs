@@ -54,7 +54,7 @@ public partial class MainPage : ContentPage
 
 	private async void OnCameraButtonClicked(object sender, EventArgs e)
 	{
-		if (DeviceInfo.Current.Platform == DevicePlatform.Android || DeviceInfo.Current.Platform == DevicePlatform.iOS)
+		if (DeviceInfo.Current.Platform == DevicePlatform.Android)
 		{
 			await Navigation.PushAsync(new AndroidCameraPage());
 		}

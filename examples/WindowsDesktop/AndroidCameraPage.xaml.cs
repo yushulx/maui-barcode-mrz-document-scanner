@@ -60,8 +60,6 @@ public partial class AndroidCameraPage : ContentPage, ICapturedResultReceiver, I
         {
             enhancer.SetCameraView(CameraPreview);
             enhancer.Open();
-            previewWidth = (float)enhancer.GetCameraView().Width;
-            previewHeight = (float)enhancer.GetCameraView().Height;
         }
     }
 
@@ -125,7 +123,6 @@ public partial class AndroidCameraPage : ContentPage, ICapturedResultReceiver, I
 
     private void OnImageSizeChanged(object sender, EventArgs e)
     {
-        // Adjust the GraphicsView size to match the Image size
         OverlayGraphicsView.WidthRequest = CameraPreview.Width;
         OverlayGraphicsView.HeightRequest = CameraPreview.Height;
     }

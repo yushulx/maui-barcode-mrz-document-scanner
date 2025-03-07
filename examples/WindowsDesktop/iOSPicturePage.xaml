@@ -14,7 +14,7 @@
             <Label FontSize="18"
                    FontAttributes="Bold"
                    x:Name="ResultLabel"
-                   Text="                                        "
+                   Text=""
                    TextColor="Red"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
