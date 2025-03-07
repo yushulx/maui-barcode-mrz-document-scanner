@@ -25,10 +25,8 @@ public partial class AndroidCameraPage : ContentPage, ICapturedResultReceiver, I
         if (DeviceInfo.Platform == DevicePlatform.Android ||
                 DeviceInfo.Platform == DevicePlatform.iOS)
         {
-            // Dynamsoft.CameraEnhancer.Maui is available only on Android/iOS
             CameraPreview = new Dynamsoft.CameraEnhancer.Maui.CameraView();
             CameraPreview.SizeChanged += OnImageSizeChanged;
-            // Insert the camera view as the first child of the grid
             MainGrid.Children.Insert(0, CameraPreview);
         }
 

@@ -5,13 +5,12 @@
              xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
              Title="iOSCameraPage">
 
-  <Grid x:Name="MainGrid"
-        Margin="0">
-    <skia:SKCanvasView x:Name="canvasView"
-                       Margin="0"
-                       HorizontalOptions="FillAndExpand"
-                       VerticalOptions="FillAndExpand"
-                       PaintSurface="OnCanvasViewPaintSurface"/>
-  </Grid>
+    <Grid x:Name="MainGrid"
+          Margin="0">
+        <skia:SKCanvasView x:Name="canvasView"
+                           Margin="0"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"/>
+    </Grid>
 
 </ContentPage>

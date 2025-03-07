@@ -25,6 +25,8 @@ public partial class iOSCameraPage : ContentPage, ICapturedResultReceiver, IComp
     {
         InitializeComponent();
 
+        canvasView.PaintSurface += OnCanvasViewPaintSurface;
+
         if (DeviceInfo.Platform == DevicePlatform.Android ||
                 DeviceInfo.Platform == DevicePlatform.iOS)
         {
@@ -79,7 +81,7 @@ public partial class iOSCameraPage : ContentPage, ICapturedResultReceiver, IComp
 
     public void OnCapturedResultReceived(CapturedResult result)
     {
-        
+
     }
 
     public void OnDecodedBarcodesReceived(DecodedBarcodesResult result)
@@ -93,17 +95,17 @@ public partial class iOSCameraPage : ContentPage, ICapturedResultReceiver, IComp
             imageHeight = data.Height;
         }
 
-         lock (_lockObject)
+        lock (_lockObject)
         {
             _barcodeResult = result;
             CameraPreview.GetDrawingLayer(EnumDrawingLayerId.DLI_DBR).Visible = false;
-            
+
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 canvasView.InvalidateSurface();
             });
         }
-       
+
     }
 
     public void OnSuccess()
@@ -146,7 +148,7 @@ public partial class iOSCameraPage : ContentPage, ICapturedResultReceiver, IComp
         heightScale = previewHeight / height;
         scale = widthScale < heightScale ? widthScale : heightScale;
         scaledWidth = previewWidth / scale;
-        scaledHeight =  previewHeight / scale;
+        scaledHeight = previewHeight / scale;
 
         SKImageInfo info = args.Info;
         SKSurface surface = args.Surface;
@@ -180,7 +182,8 @@ public partial class iOSCameraPage : ContentPage, ICapturedResultReceiver, IComp
                 if (barcodesResult != null)
                 {
                     var items = barcodesResult.Items;
-                    if (items != null) {
+                    if (items != null)
+                    {
                         foreach (var barcodeItem in items)
                         {
                             Microsoft.Maui.Graphics.Point[] points = barcodeItem.Location.Points;
@@ -208,7 +211,7 @@ public partial class iOSCameraPage : ContentPage, ICapturedResultReceiver, IComp
                                 x3 = (float)(x3 - (scaledWidth - width) / 2);
                                 x4 = (float)(x4 - (scaledWidth - width) / 2);
                             }
-                            
+
                             canvas.DrawText(barcodeItem.Text, x1, y1 - 10, SKTextAlign.Left, font, textPaint);
                             canvas.DrawLine(x1, y1, x2, y2, skPaint);
                             canvas.DrawLine(x2, y2, x3, y3, skPaint);
@@ -216,7 +219,7 @@ public partial class iOSCameraPage : ContentPage, ICapturedResultReceiver, IComp
                             canvas.DrawLine(x4, y4, x1, y1, skPaint);
                         }
                     }
-                    
+
                 }
             }
         }
