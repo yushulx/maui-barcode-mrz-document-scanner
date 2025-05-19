@@ -1,7 +1,7 @@
 # .NET MAUI VIN Scanner 
 The project demonstrates how to use **.NET MAUI** and **Dynamsoft Capture Vision SDK** to build a VIN scanner for **Android** and **iOS**.
 
-https://github.com/user-attachments/assets/0df4dd6b-945e-4296-99b4-a2d69e9ba949
+https://github.com/user-attachments/assets/096b1586-7250-4106-89b6-234bb25e8fc8
 
 ## Prerequisites
 - Visual Studio 2022 or Visual Studio Code
