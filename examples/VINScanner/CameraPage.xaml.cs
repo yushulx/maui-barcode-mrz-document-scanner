@@ -1,30 +1,21 @@
 using Dynamsoft.Core.Maui;
 using Dynamsoft.CaptureVisionRouter.Maui;
 using Dynamsoft.CameraEnhancer.Maui;
-using Dynamsoft.Utility.Maui;
-using Dynamsoft.LabelRecognizer.Maui;
 using Dynamsoft.CodeParser.Maui;
-using DynamsoftVIN;
 
 namespace VINScanner;
 
 public partial class CameraPage : ContentPage, ICapturedResultReceiver, ICompletionListener
 {
-    public static CameraEnhancer enhancer;
-    CaptureVisionRouter router;
+    public CameraEnhancer enhancer = new CameraEnhancer();
+    CaptureVisionRouter router = new CaptureVisionRouter();
     bool isCaptured = false;
 
     public CameraPage()
     {
         InitializeComponent();
-        enhancer = new CameraEnhancer();
-        router = new CaptureVisionRouter();
         router.SetInput(enhancer);
         router.AddResultReceiver(this);
-        var filter = new MultiFrameResultCrossFilter();
-        filter.EnableResultCrossVerification(EnumCapturedResultItemType.CRIT_BARCODE, true);
-        filter.EnableResultCrossVerification(EnumCapturedResultItemType.CRIT_TEXT_LINE, true);
-        router.AddResultFilter(filter);
     }
 
     protected override void OnHandlerChanged()
@@ -43,15 +34,15 @@ public partial class CameraPage : ContentPage, ICapturedResultReceiver, IComplet
         isCaptured = false;
         base.OnAppearing();
         await Permissions.RequestAsync<Permissions.Camera>();
-        enhancer?.Open();
-        router?.StartCapturing("ReadVIN", this);
+        enhancer.Open();
+        router.StartCapturing("ReadVIN", this);
     }
 
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
-        enhancer?.Close();
-        router?.StopCapturing();
+        enhancer.Close();
+        router.StopCapturing();
     }
 
     public void OnParsedResultsReceived(ParsedResult result)
@@ -73,8 +64,8 @@ public partial class CameraPage : ContentPage, ICapturedResultReceiver, IComplet
             var dictionary = ConvertToVINDictionary(parsedResultItem);
             if (dictionary != null && isCaptured)
             {
-                router?.StopCapturing();
-                enhancer?.ClearBuffer();
+                router.StopCapturing();
+                enhancer.ClearBuffer();
                 MainThread.BeginInvokeOnMainThread(async () =>
                 {
                     await Navigation.PushAsync(new ResultPage(dictionary));
