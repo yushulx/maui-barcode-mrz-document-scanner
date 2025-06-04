@@ -75,7 +75,7 @@ public partial class ScanPage : ContentPage, ILicenseVerificationListener, ICapt
         UpdateBackground();
         await Permissions.RequestAsync<Permissions.Camera>();
         MultiFrameResultCrossFilter filter = new MultiFrameResultCrossFilter();
-        filter.EnableResultCrossVerification(EnumCapturedResultItemType.CRIT_TEXT_LINE, true);
+        filter.EnableResultCrossVerification(EnumCapturedResultItemType.TextLine, true);
         router?.AddResultFilter(filter);
         try
         {
@@ -200,11 +200,20 @@ public partial class ScanPage : ContentPage, ILicenseVerificationListener, ICapt
         {
             return;
         }
-        List<TextLineResultItem> items = result.Items;
-        items.ForEach(item =>
+        TextLineResultItem[] items = result.Items;
+
+        if (items != null)
         {
-            text += item.Text + "\n\n";
-        });
+            for (int i = 0; i < items.Length; i++)
+            {
+                {
+                    TextLineResultItem item = items[i];
+                    text += item.Text + "\n\n";
+                }
+                ;
+            }
+
+        }
     }
 
     void OnParsedResultReceived(ParsedResult result)
@@ -213,18 +222,7 @@ public partial class ScanPage : ContentPage, ILicenseVerificationListener, ICapt
         {
             return;
         }
-        if (result.Items.Count() == 0)
-        {
-            if (text.Length != 0)
-            {
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    CombineErrorTexts(text);
-                });
-
-            }
-        }
-        else
+        if (result.Items.Count() > 0)
         {
             ImageData data = router.GetIntermediateResultManager().GetOriginalImage(result.OriginalImageHashId);
 
