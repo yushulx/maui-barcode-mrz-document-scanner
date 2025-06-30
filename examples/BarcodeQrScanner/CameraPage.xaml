@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:Dynamsoft.CameraEnhancer.Maui;assembly=Dynamsoft.CameraEnhancer.Maui"
+             xmlns:controls="clr-namespace:Dynamsoft.CameraEnhancer.Maui;assembly=Dynamsoft.CaptureVisionBundle.Maui"
              x:Class="BarcodeQrScanner.CameraPage"
              Title="Barcode Scanner">
     <Grid Margin="0">
         <controls:CameraView x:Name="CameraPreview"
-                              SizeChanged="OnImageSizeChanged"/>
+                             SizeChanged="OnImageSizeChanged"/>
         <GraphicsView x:Name="OverlayGraphicsView"/>
     </Grid>
 </ContentPage>

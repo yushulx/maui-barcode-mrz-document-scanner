@@ -2,8 +2,8 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <IsFirstTimeProjectOpen>False</IsFirstTimeProjectOpen>
-    <ActiveDebugFramework>net8.0-android</ActiveDebugFramework>
-    <ActiveDebugProfile>HUAWEI VOG-AL00 (Android 10.0 - API 29)</ActiveDebugProfile>
+    <ActiveDebugFramework>net9.0-android</ActiveDebugFramework>
+    <ActiveDebugProfile>Xiaomi 24031PN0DC (Android 15.0 - API 35)</ActiveDebugProfile>
     <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
   </PropertyGroup>
   <ItemGroup>
