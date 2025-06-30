@@ -13,9 +13,9 @@ public partial class CameraPage : ContentPage
     private CapturedResult? result;
 
     public CameraPage()
-	{
-		InitializeComponent();
-    }   
+    {
+        InitializeComponent();
+    }
 
     private void OnStopButtonClicked(object sender, EventArgs e)
     {
@@ -30,52 +30,62 @@ public partial class CameraPage : ContentPage
     void OnOverlayPaint(object sender, SKPaintSurfaceEventArgs args)
     {
         SKImageInfo info = args.Info;
-        SKSurface surface = args.Surface;
-        SKCanvas canvas = surface.Canvas;
+        SKCanvas canvas = args.Surface.Canvas;
         canvas.Clear();
 
-        float textSize = 18;
-        float StrokeWidth = 2;
-        SKPaint skPaint = new SKPaint
+        if (imageWidth == 0 || imageHeight == 0 || result == null)
+            return;
+
+        float scaleX = (float)info.Width / imageWidth;
+        float scaleY = (float)info.Height / imageHeight;
+        float scale = Math.Max(scaleX, scaleY);
+
+        SKPaint rectPaint = new SKPaint
         {
             Style = SKPaintStyle.Stroke,
             Color = SKColors.Blue,
-            StrokeWidth = StrokeWidth,
+            StrokeWidth = 2,
+            IsAntialias = true
         };
 
         SKPaint textPaint = new SKPaint
         {
-            Style = SKPaintStyle.Stroke,
+            Style = SKPaintStyle.Fill,
             Color = SKColors.Red,
-            StrokeWidth = StrokeWidth,
+            TextSize = 18,
+            IsAntialias = true
         };
 
-        SKFont font = new SKFont() { Size = textSize };
+        SKFont font = new SKFont() { Size = 18 };
+        float x = (info.Width - imageWidth) / 2;
+        float y = (info.Height - imageHeight) / 2;
 
-        canvas.DrawRect(0, 0, info.Width, info.Height, skPaint);
+        if (x < 0) x = 0;
+        if (y < 0) y = 0;
 
         lock (_lockObject)
         {
-            if (result == null) { return; }
+            var barcodesResult = result.GetDecodedBarcodesResult();
+            if (barcodesResult == null) return;
 
-            DecodedBarcodesResult? barcodesResult = result.GetDecodedBarcodesResult();
-            if (barcodesResult != null)
+            var items = barcodesResult.GetItems();
+            foreach (var item in items)
             {
-                BarcodeResultItem[] items = barcodesResult.GetItems();
-                foreach (BarcodeResultItem barcodeItem in items)
+                var points = item.GetLocation().points;
+
+                var scaledPoints = points.Select(p => new SKPoint(p[0] + x, p[1] + y)).ToArray();
+                for (int i = 0; i < 4; i++)
                 {
-                    Dynamsoft.Core.Point[] points = barcodeItem.GetLocation().points;
-                    canvas.DrawText(barcodeItem.GetText(), points[0][0], points[0][1], SKTextAlign.Left, font, textPaint);
-                    canvas.DrawLine(points[0][0], points[0][1], points[1][0], points[1][1], skPaint);
-                    canvas.DrawLine(points[1][0], points[1][1], points[2][0], points[2][1], skPaint);
-                    canvas.DrawLine(points[2][0], points[2][1], points[3][0], points[3][1], skPaint);
-                    canvas.DrawLine(points[3][0], points[3][1], points[0][0], points[0][1], skPaint);
+                    var p1 = scaledPoints[i];
+                    var p2 = scaledPoints[(i + 1) % 4];
+                    canvas.DrawLine(p1, p2, rectPaint);
                 }
+
+                canvas.DrawText(item.GetText(), scaledPoints[0].X, scaledPoints[0].Y - 5, textPaint);
             }
-
         }
-
     }
+
 
     private void OnResultReady(object sender, ResultReadyEventArgs e)
     {
