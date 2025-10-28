@@ -1,7 +1,9 @@
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
+#if WINDOWS
 using Dynamsoft.CVR;
 using Dynamsoft.DBR;
+#endif
 
 namespace BarcodeQrScanner;
 
@@ -9,8 +11,10 @@ public partial class PicturePage : ContentPage
 {
 
     SKBitmap? bitmap;
+#if WINDOWS
     private CaptureVisionRouter cvr = new CaptureVisionRouter();
     CapturedResult? result;
+#endif
     bool isDataReady = false;
     public PicturePage(string imagepath)
     {
@@ -94,12 +98,17 @@ public partial class PicturePage : ContentPage
 
     async void DecodeFile(string imagepath)
     {
+#if WINDOWS
         await Task.Run(() =>
         {
             result = cvr.Capture(imagepath, PresetTemplate.PT_READ_BARCODES);
             isDataReady = true;
             return Task.CompletedTask;
         });
+#else
+        await Task.Delay(100); // Placeholder for non-Windows platforms
+        isDataReady = true;
+#endif
         canvasView.InvalidateSurface();
     }
 
@@ -144,6 +153,7 @@ public partial class PicturePage : ContentPage
             SKFont font = new SKFont() { Size = textSize };
             if (isDataReady)
             {
+#if WINDOWS
                 if (result != null)
                 {
                     ResultLabel.Text = "";
@@ -166,6 +176,9 @@ public partial class PicturePage : ContentPage
                 {
                     ResultLabel.Text = "No 1D/2D barcode found";
                 }
+#else
+                ResultLabel.Text = "Barcode scanning not available on this platform";
+#endif
             }
 
 

@@ -1,8 +1,10 @@
+#if WINDOWS
 using Dynamsoft.DBR;
+using Dynamsoft.CVR;
+#endif
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 using BarcodeQrScanner.Controls;
-using Dynamsoft.CVR;
 namespace BarcodeQrScanner;
 
 public partial class CameraPage : ContentPage
@@ -10,7 +12,9 @@ public partial class CameraPage : ContentPage
     private static object _lockObject = new object();
     private int imageWidth;
     private int imageHeight;
+#if WINDOWS
     private CapturedResult? result;
+#endif
 
     public CameraPage()
     {
@@ -33,6 +37,7 @@ public partial class CameraPage : ContentPage
         SKCanvas canvas = args.Surface.Canvas;
         canvas.Clear();
 
+#if WINDOWS
         if (imageWidth == 0 || imageHeight == 0 || result == null)
             return;
 
@@ -84,6 +89,7 @@ public partial class CameraPage : ContentPage
                 canvas.DrawText(item.GetText(), scaledPoints[0].X, scaledPoints[0].Y - 5, textPaint);
             }
         }
+#endif
     }
 
 
@@ -93,7 +99,9 @@ public partial class CameraPage : ContentPage
         {
             imageWidth = e.PreviewWidth;
             imageHeight = e.PreviewHeight;
+#if WINDOWS
             result = e.Result;
+#endif
             Overlay.InvalidateSurface();
         }
     }

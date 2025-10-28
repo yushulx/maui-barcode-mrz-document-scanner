@@ -1,10 +1,13 @@
 
+#if WINDOWS
 using Dynamsoft.CVR;
+#endif
 
 namespace BarcodeQrScanner.Controls
 {
     public class ResultReadyEventArgs : EventArgs
     {
+#if WINDOWS
         public ResultReadyEventArgs(CapturedResult? result, int previewWidth, int previewHeight)
         {
             Result = result;
@@ -13,6 +16,16 @@ namespace BarcodeQrScanner.Controls
         }
 
         public CapturedResult? Result { get; private set; }
+#else
+        public ResultReadyEventArgs(object? result, int previewWidth, int previewHeight)
+        {
+            Result = result;
+            PreviewWidth = previewWidth;
+            PreviewHeight = previewHeight;
+        }
+
+        public object? Result { get; private set; }
+#endif
         public int PreviewWidth { get; private set; }
         public int PreviewHeight { get; private set; }
     }
@@ -21,6 +34,7 @@ namespace BarcodeQrScanner.Controls
     {
         public event EventHandler<ResultReadyEventArgs>? ResultReady;
 
+#if WINDOWS
         public void NotifyResultReady(CapturedResult? result, int previewWidth, int previewHeight)
         {
             if (ResultReady != null)
@@ -28,6 +42,15 @@ namespace BarcodeQrScanner.Controls
                 ResultReady(this, new ResultReadyEventArgs(result, previewWidth, previewHeight));
             }
         }
+#else
+        public void NotifyResultReady(object? result, int previewWidth, int previewHeight)
+        {
+            if (ResultReady != null)
+            {
+                ResultReady(this, new ResultReadyEventArgs(result, previewWidth, previewHeight));
+            }
+        }
+#endif
 
         public void UpdateResolution(int width, int height)
         {
