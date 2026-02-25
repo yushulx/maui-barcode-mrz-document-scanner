@@ -35,3 +35,6 @@ This repository contains the source code for a camera-based barcode scanner appl
 3. Run the application.
 
     ![.NET MAUI Windows Barcode Scanner](https://www.dynamsoft.com/codepool/img/2025/02/dotnet-maui-windows-multi-barcode-scanner.png)
+
+## Blog
+[Cross-Platform .NET MAUI Barcode Scanner: Merging Mobile and Desktop Projects](https://www.dynamsoft.com/codepool/maui-ios-android-windows-camera-barcode-scanner.html)
