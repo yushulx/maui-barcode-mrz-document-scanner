@@ -64,7 +64,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0-windows10.0.19041.0'">
-		<PackageReference Include="Dynamsoft.DotNet.BarcodeReader.Bundle" Version="11.0.3000" />
+		<PackageReference Include="Dynamsoft.DotNet.BarcodeReader.Bundle" Version="11.4.2001" />
 	</ItemGroup>
 
 	<ItemGroup>
