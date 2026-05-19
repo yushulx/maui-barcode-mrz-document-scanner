@@ -89,3 +89,6 @@ Run the iOS target from Visual Studio on a Mac, or from Visual Studio on Windows
 - If the Windows CLI build is pulled into Android/iOS restore and fails on package download, Visual Studio with the `Windows Machine` target is the most reliable way to launch the Windows app.
 - If Android is not detected, start an emulator first or verify that the device is connected and USB debugging is enabled.
 - If iOS is not available in the target list, confirm that Xcode is installed on the paired Mac and that the pairing connection is active.
+
+## Blog
+[Cross-Platform .NET MAUI Barcode Scanner: Merging Mobile and Desktop Projects](https://www.dynamsoft.com/codepool/maui-ios-android-windows-camera-barcode-scanner.html)
