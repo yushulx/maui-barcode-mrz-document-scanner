@@ -60,7 +60,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android' Or '$(TargetFramework)' == 'net9.0-ios'">
-		<PackageReference Include="Dynamsoft.BarcodeReaderBundle.Maui" Version="11.0.3100" />
+		<PackageReference Include="Dynamsoft.BarcodeReaderBundle.Maui" Version="11.6.2000" />
 	</ItemGroup>
 
 	<ItemGroup>

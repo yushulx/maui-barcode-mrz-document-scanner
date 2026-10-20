@@ -61,11 +61,11 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0-android36.0' Or '$(TargetFramework)' == 'net10.0-ios26.0'">
-		<PackageReference Include="Dynamsoft.CaptureVisionBundle.Maui" Version="3.4.1200" />
+		<PackageReference Include="Dynamsoft.CaptureVisionBundle.Maui" Version="3.6.2000" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0-windows10.0.19041.0'">
-		<PackageReference Include="Dynamsoft.DotNet.BarcodeReader.Bundle" Version="11.4.2001" />
+		<PackageReference Include="Dynamsoft.DotNet.BarcodeReader.Bundle" Version="11.6.4000" />
 	</ItemGroup>
 
 	<ItemGroup>
