@@ -44,7 +44,6 @@ jobs:
           - examples/BarcodeQrScanner/BarcodeQrScanner.csproj
           - examples/MrzScanner/MRZScanner.csproj
           - examples/DocumentScanner/AutoNormalize.csproj
-          - examples/VINScanner/VINScanner.csproj
     steps:
       - uses: actions/checkout@v4
 
