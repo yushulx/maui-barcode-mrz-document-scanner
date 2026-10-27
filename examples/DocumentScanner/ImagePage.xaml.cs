@@ -44,9 +44,10 @@ public partial class ImagePage : ContentPage
         settings.DocumentSettings.ColourMode = type;
         cvr.UpdateSettings(name, settings);
         var result = cvr.Capture(data, name);
-        if (result?.Items?.Count > 0 && result.Items[0] is DeskewedImageResultItem item)
+        var items = result?.ProcessedDocumentResult?.DeskewedImageResultItems;
+        if (items?.Length > 0)
         {
-            _item = item;
+            _item = items[0];
             image.Source = _item.ImageData.ToImageSource();
         }
     }
