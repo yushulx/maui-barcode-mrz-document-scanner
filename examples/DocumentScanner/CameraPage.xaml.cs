@@ -52,11 +52,12 @@ public partial class CameraPage : ContentPage, ICapturedResultReceiver, IComplet
 
     public void OnProcessedDocumentResultReceived(ProcessedDocumentResult result)
     {
-        if (result?.Items?.Count > 0 && isReady)
+        var items = result?.DeskewedImageResultItems;
+        if (items?.Length > 0 && isReady)
         {
             router?.StopCapturing();
             enhancer?.ClearBuffer();
-            var data = result.Items[0].ImageData;
+            var data = items[0].ImageData;
 
             MainThread.BeginInvokeOnMainThread(async () =>
             {
