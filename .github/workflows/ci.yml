@@ -55,10 +55,24 @@ jobs:
       - name: Build for the iOS simulator
         # Restore only the iOS target: the projects also list the Android TFM,
         # and pulling the Android workload into every matrix leg is unnecessary.
-        run: >
-          dotnet build ${{ matrix.project }}
-          -c Release
-          -f net10.0-ios26.0
-          -p:TargetFrameworks=net10.0-ios26.0
-          -p:RuntimeIdentifier=iossimulator-arm64
+        # Errors are re-emitted as check annotations so they are readable
+        # without repository admin rights.
+        shell: bash
+        run: |
+          set +e
+          dotnet build "${{ matrix.project }}" \
+            -c Release \
+            -f net10.0-ios26.0 \
+            -p:TargetFrameworks=net10.0-ios26.0 \
+            -p:RuntimeIdentifier=iossimulator-arm64 > build.log 2>&1
+          status=$?
+          if [ $status -ne 0 ]; then
+            grep -E "error [A-Z]+[0-9]+|error :|error CS|error MSB|error NETSDK|error NU" build.log \
+              | sort -u | head -10 | while IFS= read -r line; do
+                echo "::error title=build failure::${line//'%'/'%25'}"
+              done
+            echo "---------- last 40 lines ----------"
+            tail -40 build.log
+          fi
+          exit $status
 
