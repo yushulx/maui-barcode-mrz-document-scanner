@@ -7,7 +7,7 @@ public partial class ImagePage : ContentPage
 {
     ImageData data;
     CaptureVisionRouter cvr;
-    private NormalizedImageResultItem _item = null;
+    private DeskewedImageResultItem _item = null;
 
     public ImagePage(ImageData data)
     {
@@ -44,9 +44,9 @@ public partial class ImagePage : ContentPage
         settings.DocumentSettings.ColourMode = type;
         cvr.UpdateSettings(name, settings);
         var result = cvr.Capture(data, name);
-        if (result?.Items?.Count > 0 && result.Items[0].Type == EnumCapturedResultItemType.CRIT_NORMALIZED_IMAGE)
+        if (result?.Items?.Count > 0 && result.Items[0] is DeskewedImageResultItem item)
         {
-            _item = (NormalizedImageResultItem)result.Items[0];
+            _item = item;
             image.Source = _item.ImageData.ToImageSource();
         }
     }

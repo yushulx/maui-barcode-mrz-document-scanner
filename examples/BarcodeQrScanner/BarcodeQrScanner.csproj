@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
+		<TargetFrameworks>net10.0-android36.0;net10.0-ios26.0</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>BarcodeQrScanner</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -59,7 +59,7 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android' Or '$(TargetFramework)' == 'net9.0-ios'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0-android36.0' Or '$(TargetFramework)' == 'net10.0-ios26.0'">
 		<PackageReference Include="Dynamsoft.BarcodeReaderBundle.Maui" Version="11.6.2000" />
 	</ItemGroup>
 

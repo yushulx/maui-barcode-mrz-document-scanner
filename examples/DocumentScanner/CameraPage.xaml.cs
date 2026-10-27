@@ -50,7 +50,7 @@ public partial class CameraPage : ContentPage, ICapturedResultReceiver, IComplet
 
     bool isReady = false;
 
-    public void OnNormalizedImagesReceived(NormalizedImagesResult result)
+    public void OnProcessedDocumentResultReceived(ProcessedDocumentResult result)
     {
         if (result?.Items?.Count > 0 && isReady)
         {
