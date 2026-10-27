@@ -34,6 +34,9 @@ jobs:
   ios:
     name: Build iOS sample (${{ matrix.project }})
     runs-on: macos-15
+    env:
+      # The .NET iOS 26.0 workload requires Xcode 26, not the runner's default 16.4.
+      DEVELOPER_DIR: /Applications/Xcode_26.0.1.app/Contents/Developer
     strategy:
       fail-fast: false
       matrix:
