@@ -47,10 +47,10 @@ public partial class CameraPage : ContentPage, ICapturedResultReceiver, IComplet
 
     public void OnParsedResultsReceived(ParsedResult result)
     {
-        if (result?.Items?.Count > 0)
+        if (result?.Items?.Count() > 0)
         {
             ParsedResultItem parsedResultItem = result.Items[0];
-            if (result.Items.Count > 1)
+            if (result.Items.Count() > 1)
             {
                 foreach (var item in result.Items)
                 {
