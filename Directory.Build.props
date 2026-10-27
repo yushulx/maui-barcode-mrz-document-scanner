@@ -1,0 +1,11 @@
+<Project>
+  <!--
+    The Dynamsoft MAUI packages require Microsoft.Maui.Controls 10.0.20 or
+    newer, while the .NET 10 workload band installed on CI still resolves
+    $(MauiVersion) to 10.0.0. Pin the MAUI packages here so every sample
+    restores a consistent version and NuGet does not fail with NU1605.
+  -->
+  <PropertyGroup>
+    <MauiVersion>10.0.20</MauiVersion>
+  </PropertyGroup>
+</Project>
