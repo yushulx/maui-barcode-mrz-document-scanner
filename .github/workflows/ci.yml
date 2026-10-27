@@ -53,9 +53,12 @@ jobs:
         run: dotnet workload install maui-ios --skip-manifest-update
 
       - name: Build for the iOS simulator
+        # Restore only the iOS target: the projects also list the Android TFM,
+        # and pulling the Android workload into every matrix leg is unnecessary.
         run: >
           dotnet build ${{ matrix.project }}
           -c Release
           -f net10.0-ios26.0
+          -p:TargetFrameworks=net10.0-ios26.0
           -p:RuntimeIdentifier=iossimulator-arm64
 
