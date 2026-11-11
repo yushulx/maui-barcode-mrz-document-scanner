@@ -65,4 +65,14 @@ public partial class PicturePage : ContentPage
         OverlayGraphicsView.HeightRequest = PickedImage.Height;
     }
 
+    protected override void OnHandlerChanged()
+    {
+        base.OnHandlerChanged();
+        if (this.Handler == null)
+        {
+            (router as IDisposable)?.Dispose();
+            router = null;
+        }
+    }
+
 }

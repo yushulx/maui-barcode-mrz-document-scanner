@@ -46,6 +46,17 @@ public partial class CameraPage : ContentPage, ICapturedResultReceiver, IComplet
             enhancer.SetCameraView(CameraPreview);
             enhancer.Open();
         }
+        else if (this.Handler == null)
+        {
+            // The page is being torn down (popped from the navigation stack).
+            // Release the native camera and router resources, not just the preview.
+            WeakReferenceMessenger.Default.Unregister<LifecycleEventMessage>(this);
+            router?.StopCapturing();
+            enhancer?.Close();
+            enhancer?.Dispose();
+            (router as IDisposable)?.Dispose();
+            enhancer = null;
+        }
     }
 
     protected override async void OnAppearing()

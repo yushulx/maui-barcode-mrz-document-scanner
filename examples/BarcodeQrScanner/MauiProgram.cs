@@ -31,6 +31,16 @@ public static class MauiProgram
                                     {
 										NotifyPage("Stop");
                                     }));
+#elif IOS
+                                events.AddiOS(ios => ios
+                                    .WillEnterForeground((app) =>
+                                    {
+                                        NotifyPage("Resume");
+                                    })
+                                    .DidEnterBackground((app) =>
+                                    {
+                                        NotifyPage("Stop");
+                                    }));
 #endif
 							})
 							.ConfigureMauiHandlers(handlers =>
