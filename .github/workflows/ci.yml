@@ -32,7 +32,7 @@ jobs:
           -p:TargetFrameworks=net10.0-windows10.0.19041.0
 
   android:
-    name: Build Android sample
+    name: Build Android samples
     # Windows runner: the .NET Android workload ships the win-x64 Mono host
     # packs here. On ubuntu-latest the restore fails with NU1102 because
     # Microsoft.NETCore.App.Runtime.Mono.linux-x64 is not on nuget.org.
@@ -62,6 +62,16 @@ jobs:
           -f net10.0-android36.0
           -p:TargetFrameworks=net10.0-android36.0
 
+      # examples/WindowsDesktop is the single project that also targets iOS and
+      # Windows (two different Dynamsoft packages behind #if), so its Android
+      # target must compile too.
+      - name: Build the combined sample for Android
+        run: >
+          dotnet build examples/WindowsDesktop/BarcodeQrScanner.csproj
+          -c Release
+          -f net10.0-android36.0
+          -p:TargetFrameworks=net10.0-android36.0
+
   ios:
     name: Build iOS sample (${{ matrix.project }})
     runs-on: macos-15
@@ -73,6 +83,7 @@ jobs:
       matrix:
         project:
           - examples/BarcodeQrScanner/BarcodeQrScanner.csproj
+          - examples/WindowsDesktop/BarcodeQrScanner.csproj
           - examples/MrzScanner/MRZScanner.csproj
           - examples/DocumentScanner/AutoNormalize.csproj
     steps:
