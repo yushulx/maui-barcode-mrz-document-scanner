@@ -33,7 +33,10 @@ jobs:
 
   android:
     name: Build Android sample
-    runs-on: ubuntu-latest
+    # Windows runner: the .NET Android workload ships the win-x64 Mono host
+    # packs here. On ubuntu-latest the restore fails with NU1102 because
+    # Microsoft.NETCore.App.Runtime.Mono.linux-x64 is not on nuget.org.
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
 
